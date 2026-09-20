@@ -3,40 +3,40 @@
 @tailwind utilities;
 
 /*
-  设计基调：荧光科技蓝（Electric Blue）
-  ── 主色为高亮电光蓝（HSL 197 100% 46%，接近 #0095ff），色相偏青、明度拉满
-  ── 背景/卡片带青蓝倾向，暗色模式为深海蓝底 + 荧光蓝主色
+  设计基调：科技蓝·深海数据大屏（Tech Blue / Navy Glow）
+  ── 全站以深海军蓝为底（HSL 217 65% 5%），电光蓝（HSL 197 100% 50%）为唯一强调色
+  ── 背景带径向蓝色光晕 + 细网格线，营造科技感；卡片半透明 + 蓝色辉光阴影
+  ── 浅色模式为同一套蓝色体系的「冰蓝」变体，明暗切换不改变风格基因
   ── 奖项徽章保留奖牌色：特等/一等=金、二等=银、三等=铜、优秀=灰
   ── 赛道各有一个柔和色相，只用于「无封面」时的占位渐变
-  ── 圆角 + 柔和阴影 + 卡片；系统无衬线字体，不加载外部字体
 */
 
 @layer base {
   :root {
-    --background: 202 55% 97.5%;
-    --foreground: 210 40% 11%;
+    --background: 205 60% 96.5%;
+    --foreground: 215 60% 12%;
 
     --card: 0 0% 100%;
-    --card-foreground: 210 40% 11%;
+    --card-foreground: 215 60% 12%;
     --popover: 0 0% 100%;
-    --popover-foreground: 210 40% 11%;
+    --popover-foreground: 215 60% 12%;
 
-    --primary: 197 100% 46%;
+    --primary: 199 95% 45%;
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 202 45% 93.5%;
-    --secondary-foreground: 205 45% 20%;
-    --muted: 202 35% 94%;
-    --muted-foreground: 206 18% 42%;
-    --accent: 199 75% 91%;
-    --accent-foreground: 203 55% 24%;
+    --secondary: 205 50% 92%;
+    --secondary-foreground: 210 60% 22%;
+    --muted: 205 45% 93%;
+    --muted-foreground: 210 20% 40%;
+    --accent: 197 70% 90%;
+    --accent-foreground: 200 70% 26%;
 
     --destructive: 0 72% 46%;
     --destructive-foreground: 0 0% 98%;
 
-    --border: 202 30% 86%;
-    --input: 202 28% 80%;
-    --ring: 197 100% 46%;
+    --border: 205 35% 85%;
+    --input: 205 30% 78%;
+    --ring: 199 95% 45%;
 
     --radius: 0.75rem;
 
@@ -52,30 +52,30 @@
   }
 
   .dark {
-    --background: 205 45% 6.5%;
-    --foreground: 199 45% 94%;
+    --background: 217 65% 5%;
+    --foreground: 202 60% 93%;
 
-    --card: 205 38% 10%;
-    --card-foreground: 199 45% 94%;
-    --popover: 205 38% 11%;
-    --popover-foreground: 199 45% 94%;
+    --card: 216 50% 9%;
+    --card-foreground: 202 60% 93%;
+    --popover: 216 50% 10%;
+    --popover-foreground: 202 60% 93%;
 
-    --primary: 193 100% 55%;
-    --primary-foreground: 205 60% 7%;
+    --primary: 197 100% 50%;
+    --primary-foreground: 217 80% 6%;
 
-    --secondary: 205 30% 15.5%;
-    --secondary-foreground: 199 40% 92%;
-    --muted: 205 30% 15.5%;
-    --muted-foreground: 201 18% 62%;
-    --accent: 202 38% 17.5%;
-    --accent-foreground: 199 50% 92%;
+    --secondary: 216 40% 15%;
+    --secondary-foreground: 202 45% 90%;
+    --muted: 216 40% 15%;
+    --muted-foreground: 205 25% 65%;
+    --accent: 205 60% 18%;
+    --accent-foreground: 199 80% 90%;
 
     --destructive: 0 62% 58%;
     --destructive-foreground: 0 0% 9%;
 
-    --border: 205 28% 18%;
-    --input: 205 25% 24%;
-    --ring: 193 100% 58%;
+    --border: 210 50% 20%;
+    --input: 210 45% 26%;
+    --ring: 197 100% 50%;
 
     --medal-gold: 43 80% 50%;
     --medal-gold-foreground: 28 70% 10%;
@@ -101,6 +101,31 @@
     @apply bg-background text-foreground font-sans antialiased;
     font-feature-settings: "kern" 1, "liga" 1, "tnum" 0;
     text-rendering: optimizeLegibility;
+  }
+
+  /*
+    科技蓝背景系统：深色模式下 = 深海军蓝底 + 两团电光蓝光晕 + 细网格线。
+    网格用 1px 线性渐变平铺，不加载任何图片资源；光晕用大半径径向渐变。
+  */
+  .dark body {
+    background-image:
+      radial-gradient(55rem 38rem at 82% -12%, hsl(197 100% 45% / 0.16), transparent 62%),
+      radial-gradient(48rem 34rem at -12% 30%, hsl(217 95% 55% / 0.12), transparent 60%),
+      radial-gradient(70rem 40rem at 50% 118%, hsl(199 90% 50% / 0.10), transparent 65%),
+      linear-gradient(hsl(199 80% 55% / 0.05) 1px, transparent 1px),
+      linear-gradient(90deg, hsl(199 80% 55% / 0.05) 1px, transparent 1px);
+    background-size: auto, auto, auto, 42px 42px, 42px 42px;
+    background-attachment: fixed;
+  }
+
+  /* 浅色（冰蓝）模式：同样有网格基因，但明度反过来 */
+  body {
+    background-image:
+      radial-gradient(55rem 38rem at 82% -12%, hsl(199 95% 50% / 0.10), transparent 62%),
+      linear-gradient(hsl(205 60% 45% / 0.055) 1px, transparent 1px),
+      linear-gradient(90deg, hsl(205 60% 45% / 0.055) 1px, transparent 1px);
+    background-size: auto, 42px 42px, 42px 42px;
+    background-attachment: fixed;
   }
 
   ::selection {
@@ -133,6 +158,40 @@
   /* 小标签：区块名、字段名之类的辅助文字 */
   .eyebrow {
     @apply text-xs font-medium uppercase tracking-wider text-muted-foreground;
+  }
+
+  /* 科技蓝辉光：主按钮 / Logo / 选中徽标的呼吸光 */
+  .glow-primary {
+    box-shadow:
+      0 0 0 1px hsl(var(--primary) / 0.35),
+      0 0 20px hsl(var(--primary) / 0.40),
+      0 4px 14px -4px hsl(var(--primary) / 0.45);
+  }
+
+  /* 电光蓝渐变主按钮 */
+  .btn-tech {
+    background-image: linear-gradient(
+      135deg,
+      hsl(199 100% 55%) 0%,
+      hsl(217 95% 58%) 100%
+    );
+  }
+
+  /* 标题渐变字：白 → 电光蓝 */
+  .text-tech-gradient {
+    background-image: linear-gradient(
+      92deg,
+      hsl(var(--foreground)) 15%,
+      hsl(var(--primary)) 85%
+    );
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  /* 主色文字辉光（统计数字） */
+  .text-glow-primary {
+    text-shadow: 0 0 18px hsl(var(--primary) / 0.55);
   }
 
   /*

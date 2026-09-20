@@ -121,11 +121,11 @@ export default function Home() {
       <main className="mx-auto w-full max-w-grid flex-1 px-5 sm:px-8">
         {/* ── Hero：标题 + 说明 + 总览统计 ── */}
         <section className="animate-rise py-14 sm:py-20">
-          <span className="inline-flex items-center gap-1.5 rounded-full border border-border bg-card px-3 py-1 text-xs font-medium text-muted-foreground">
+          <span className="glow-primary inline-flex items-center gap-1.5 rounded-full border border-primary/40 bg-primary/10 px-3 py-1 text-xs font-medium text-primary">
             <Trophy className="size-3.5" aria-hidden />
             竞赛获奖项目汇编
           </span>
-          <h1 className="mt-5 max-w-3xl text-display font-bold tracking-tight">
+          <h1 className="text-tech-gradient mt-5 max-w-3xl text-display font-bold tracking-tight">
             记录每一个走上领奖台的项目
           </h1>
           <p className="mt-5 max-w-2xl text-base text-muted-foreground sm:text-lg">
@@ -142,7 +142,7 @@ export default function Home() {
         </section>
 
         {/* ── 检索 ── */}
-        <section className="rounded-2xl border border-border bg-card p-5 shadow-card sm:p-6">
+        <section className="rounded-2xl border border-primary/25 bg-card/80 p-5 shadow-card backdrop-blur-md sm:p-6">
           <FilterBar
             filters={filters}
             onChange={setFilters}
@@ -208,13 +208,13 @@ function StatCard({
   unit?: string
 }) {
   return (
-    <div className="flex items-center gap-4 rounded-xl border border-border bg-card p-4 shadow-card sm:p-5">
-      <span className="flex size-10 shrink-0 items-center justify-center rounded-lg bg-muted text-foreground [&_svg]:size-5">
+    <div className="flex items-center gap-4 rounded-xl border border-border bg-card/80 p-4 shadow-card backdrop-blur-md sm:p-5">
+      <span className="flex size-10 shrink-0 items-center justify-center rounded-lg bg-primary/15 text-primary ring-1 ring-primary/30 [&_svg]:size-5">
         {icon}
       </span>
       <div className="min-w-0">
         <dt className="text-xs text-muted-foreground">{label}</dt>
-        <dd className="mt-0.5 text-2xl font-semibold tabular-nums tracking-tight">
+        <dd className="text-glow-primary mt-0.5 text-2xl font-semibold tabular-nums tracking-tight text-primary">
           {value ?? "—"}
           {unit && value != null && (
             <span className="ml-1 text-sm font-normal text-muted-foreground">{unit}</span>

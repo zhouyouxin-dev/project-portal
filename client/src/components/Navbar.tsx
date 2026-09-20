@@ -12,10 +12,10 @@ export function Navbar({ section }: NavbarProps) {
   const { resolvedTheme, setTheme } = useTheme()
 
   return (
-    <header className="sticky top-0 z-50 border-b border-border/80 bg-background/80 backdrop-blur-md">
+    <header className="sticky top-0 z-50 border-b border-primary/25 bg-background/75 backdrop-blur-xl">
       <div className="mx-auto flex h-16 max-w-grid items-center justify-between gap-4 px-5 sm:px-8">
         <Link to="/" className="flex min-w-0 items-center gap-2.5 font-semibold">
-          <span className="flex size-8 shrink-0 items-center justify-center rounded-lg bg-primary text-primary-foreground">
+          <span className="glow-primary flex size-8 shrink-0 items-center justify-center rounded-lg bg-primary text-primary-foreground">
             <Trophy className="size-4" aria-hidden />
           </span>
           <span className="truncate">竞赛获奖项目库</span>
