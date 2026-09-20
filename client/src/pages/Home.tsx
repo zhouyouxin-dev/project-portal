@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from "react"
 import { useSearchParams } from "react-router-dom"
-import { ChartColumn, ExternalLink, FileCheck2, LayoutGrid, Medal, Mic, Scale, SearchX, ServerOff, Trophy } from "lucide-react"
+import { ChartColumn, ExternalLink, FileCheck2, LayoutGrid, Medal, Mic, Play, Scale, SearchX, ServerOff, Trophy } from "lucide-react"
 import { api, ApiError } from "@/lib/api"
 import { useDebounce } from "@/hooks/use-debounce"
 import { useDocumentTitle } from "@/hooks/use-document-title"
@@ -195,28 +195,46 @@ export default function Home() {
           <SectionHeading title="相关系统" icon={<Scale className="size-5" />} description="学院与团队的其他系统入口" />
           <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {RELATED_SYSTEMS.map((sys) => (
-              <a
+              <article
                 key={sys.url}
-                href={sys.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="tech-card tech-corner group relative flex flex-col gap-3 overflow-hidden rounded-xl border border-border bg-card/85 p-5 shadow-card backdrop-blur-md transition-[transform,box-shadow,border-color] duration-200 hover:-translate-y-0.5 hover:border-primary/40 hover:shadow-card-hover focus-visible:ring-2 focus-visible:ring-ring/30"
+                className="tech-card tech-corner group relative flex flex-col gap-3 overflow-hidden rounded-xl border border-border bg-card/85 p-5 shadow-card backdrop-blur-md transition-[transform,box-shadow,border-color] duration-200 hover:-translate-y-0.5 hover:border-primary/40 hover:shadow-card-hover focus-within:ring-2 focus-within:ring-ring/30"
               >
                 <div className="flex items-center gap-3">
                   <span className="flex size-10 shrink-0 items-center justify-center rounded-lg bg-primary/15 text-primary ring-1 ring-primary/30 [&_svg]:size-5">
                     {sys.icon}
                   </span>
-                  <h3 className="line-clamp-2 text-base font-semibold leading-snug">{sys.name}</h3>
+                  <h3 className="line-clamp-2 text-base font-semibold leading-snug">
+                    {/* 拉伸链接：整卡可点开系统，视频按钮单独抬高 z-index */}
+                    <a
+                      href={sys.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="outline-none after:absolute after:inset-0 after:content-['']"
+                    >
+                      {sys.name}
+                    </a>
+                  </h3>
                   <ExternalLink
                     aria-hidden
                     className="ml-auto size-4 shrink-0 text-muted-foreground transition-colors group-hover:text-primary"
                   />
                 </div>
                 <p className="line-clamp-2 text-sm text-muted-foreground">{sys.description}</p>
-                <p className="mt-auto truncate font-mono text-xs text-muted-foreground">
-                  {sys.host}
-                </p>
-              </a>
+                <div className="relative z-10 mt-auto flex items-center justify-between gap-3 pt-1">
+                  <p className="truncate font-mono text-xs text-muted-foreground">{sys.host}</p>
+                  {sys.video && (
+                    <a
+                      href={sys.video}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex shrink-0 items-center gap-1 rounded-full border border-primary/30 bg-primary/10 px-2.5 py-1 text-xs font-medium text-primary transition-colors hover:border-primary/60 hover:bg-primary/15"
+                    >
+                      <Play aria-hidden className="size-3" />
+                      参赛视频
+                    </a>
+                  )}
+                </div>
+              </article>
             ))}
           </div>
         </section>
@@ -227,7 +245,17 @@ export default function Home() {
   )
 }
 
-const RELATED_SYSTEMS = [
+interface RelatedSystem {
+  name: string
+  description: string
+  url: string
+  host: string
+  icon: React.ReactNode
+  /** 可选：参赛视频地址（前端静态目录 public/videos 下） */
+  video?: string
+}
+
+const RELATED_SYSTEMS: RelatedSystem[] = [
   {
     name: "赛势智绎",
     description: "体育赛事专业智能解说系统，自动生成专业级赛事解说",
@@ -248,6 +276,7 @@ const RELATED_SYSTEMS = [
     url: "http://43.139.126.174:9190/",
     host: "43.139.126.174:9190",
     icon: <Scale />,
+    video: "/videos/zhihuifalian-competition.mp4",
   },
 ]
 
