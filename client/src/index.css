@@ -4,7 +4,7 @@
 
 /*
   设计基调：科技蓝·深海数据大屏（Tech Blue / Navy Glow）
-  ── 全站以深海军蓝为底（HSL 217 65% 5%），电光蓝（HSL 197 100% 50%）为唯一强调色
+  ── 全站以海军蓝为底（HSL 216 45% 11%），电光蓝（HSL 197 100% 50%）为唯一强调色
   ── 背景带径向蓝色光晕 + 细网格线，营造科技感；卡片半透明 + 蓝色辉光阴影
   ── 浅色模式为同一套蓝色体系的「冰蓝」变体，明暗切换不改变风格基因
   ── 奖项徽章保留奖牌色：特等/一等=金、二等=银、三等=铜、优秀=灰
@@ -52,29 +52,29 @@
   }
 
   .dark {
-    --background: 217 65% 5%;
+    --background: 216 45% 11%;
     --foreground: 202 60% 93%;
 
-    --card: 216 50% 9%;
+    --card: 216 40% 15.5%;
     --card-foreground: 202 60% 93%;
-    --popover: 216 50% 10%;
+    --popover: 216 40% 16.5%;
     --popover-foreground: 202 60% 93%;
 
     --primary: 197 100% 50%;
     --primary-foreground: 217 80% 6%;
 
-    --secondary: 216 40% 15%;
+    --secondary: 216 35% 21%;
     --secondary-foreground: 202 45% 90%;
-    --muted: 216 40% 15%;
-    --muted-foreground: 205 25% 65%;
-    --accent: 205 60% 18%;
+    --muted: 216 35% 21%;
+    --muted-foreground: 205 25% 68%;
+    --accent: 205 55% 24%;
     --accent-foreground: 199 80% 90%;
 
     --destructive: 0 62% 58%;
     --destructive-foreground: 0 0% 9%;
 
-    --border: 210 50% 20%;
-    --input: 210 45% 26%;
+    --border: 210 40% 27%;
+    --input: 210 38% 33%;
     --ring: 197 100% 50%;
 
     --medal-gold: 43 80% 50%;
@@ -109,11 +109,11 @@
   */
   .dark body {
     background-image:
-      radial-gradient(55rem 38rem at 82% -12%, hsl(197 100% 45% / 0.16), transparent 62%),
-      radial-gradient(48rem 34rem at -12% 30%, hsl(217 95% 55% / 0.12), transparent 60%),
-      radial-gradient(70rem 40rem at 50% 118%, hsl(199 90% 50% / 0.10), transparent 65%),
-      linear-gradient(hsl(199 80% 55% / 0.05) 1px, transparent 1px),
-      linear-gradient(90deg, hsl(199 80% 55% / 0.05) 1px, transparent 1px);
+      radial-gradient(55rem 38rem at 82% -12%, hsl(197 100% 45% / 0.13), transparent 62%),
+      radial-gradient(48rem 34rem at -12% 30%, hsl(217 95% 55% / 0.10), transparent 60%),
+      radial-gradient(70rem 40rem at 50% 118%, hsl(199 90% 50% / 0.08), transparent 65%),
+      linear-gradient(hsl(199 80% 60% / 0.035) 1px, transparent 1px),
+      linear-gradient(90deg, hsl(199 80% 60% / 0.035) 1px, transparent 1px);
     background-size: auto, auto, auto, 42px 42px, 42px 42px;
     background-attachment: fixed;
   }
