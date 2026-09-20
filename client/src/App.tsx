@@ -18,9 +18,9 @@ export default function App() {
     // 而 Tailwind 的 darkMode 配置读的是 class，缺了这行暗色样式一条都不会生效
     <ThemeProvider
       attribute="class"
-      defaultTheme="dark"
+      defaultTheme="light"
       enableSystem={false}
-      storageKey="portal-theme-v4"
+      storageKey="portal-theme-v3"
       disableTransitionOnChange
     >
       <BrowserRouter>

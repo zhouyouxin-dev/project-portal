@@ -55,32 +55,32 @@
   }
 
   .dark {
-    --background: 210 91% 17%;
-    --foreground: 203 68% 93%;
+    --background: 216 45% 11%;
+    --foreground: 202 60% 93%;
 
-    --card: 209 82% 25%;
-    --card-foreground: 203 68% 93%;
-    --popover: 210 80% 22%;
-    --popover-foreground: 203 68% 93%;
+    --card: 216 40% 15.5%;
+    --card-foreground: 202 60% 93%;
+    --popover: 216 40% 16.5%;
+    --popover-foreground: 202 60% 93%;
 
     --primary: 197 100% 50%;
-    --primary-foreground: 210 91% 12%;
+    --primary-foreground: 217 80% 6%;
 
-    --secondary: 210 70% 30%;
-    --secondary-foreground: 206 60% 90%;
-    --muted: 210 70% 28%;
-    --muted-foreground: 208 62% 74%;
-    --accent: 209 65% 32%;
+    --secondary: 216 35% 21%;
+    --secondary-foreground: 202 45% 90%;
+    --muted: 216 35% 21%;
+    --muted-foreground: 205 25% 68%;
+    --accent: 205 55% 24%;
     --accent-foreground: 199 80% 90%;
 
     --destructive: 0 62% 58%;
     --destructive-foreground: 0 0% 9%;
 
-    --border: 209 60% 38%;
-    --input: 209 55% 42%;
+    --border: 210 40% 27%;
+    --input: 210 38% 33%;
     --ring: 197 100% 50%;
 
-    --hud: 163 50% 56%;
+    --hud: 165 60% 55%;
 
     --medal-gold: 43 80% 50%;
     --medal-gold-foreground: 28 70% 10%;
@@ -226,21 +226,6 @@
   }
   .tech-card:hover::before {
     opacity: 1;
-  }
-
-  /*
-    大屏模式（.dark）：能量线从顶部横线改为左侧竖条，
-    配合等宽数字就是指挥中心数据屏的气质。
-  */
-  .dark .tech-card::before {
-    inset: 8px auto 8px 0;
-    width: 3px;
-    height: auto;
-    background: linear-gradient(
-      180deg,
-      hsl(var(--primary) / 0.9) 0%,
-      hsl(var(--primary) / 0.35) 100%
-    );
   }
 
   /*

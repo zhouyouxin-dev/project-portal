@@ -121,11 +121,10 @@ export default function Home() {
       <main className="mx-auto w-full max-w-grid flex-1 px-5 sm:px-8">
         {/* ── Hero：标题 + 说明 + 总览统计 ── */}
         <section className="animate-rise py-14 sm:py-20">
-          <p className="flex items-center gap-2 font-mono text-xs font-medium tracking-[0.2em] text-hud">
-            <span aria-hidden className="inline-block size-2 rounded-full bg-hud" />
-            LIVE — 竞赛项目数据中心 · {new Date().toISOString().slice(0, 10)}
+          <span className="glow-primary inline-flex items-center gap-1.5 rounded-full border border-primary/40 bg-primary/10 px-3 py-1 text-xs font-medium text-primary">
             <Trophy className="size-3.5" aria-hidden />
-          </p>
+            竞赛获奖项目汇编
+          </span>
           <h1 className="text-tech-gradient mt-5 max-w-3xl text-display font-bold tracking-tight">
             记录每一个走上领奖台的项目
           </h1>
@@ -135,21 +134,9 @@ export default function Home() {
           </p>
 
           <dl className="mt-10 grid grid-cols-2 gap-4 lg:grid-cols-4">
-            <StatCard icon={<LayoutGrid />} label="收录项目" value={facets?.total} unit="项" bar={100} />
-            <StatCard
-              icon={<Trophy />}
-              label="国家级获奖"
-              value={facets?.national}
-              unit="项"
-              bar={facets && facets.total ? (facets.national / facets.total) * 100 : undefined}
-            />
-            <StatCard
-              icon={<Medal />}
-              label="省级获奖"
-              value={facets?.provincial}
-              unit="项"
-              bar={facets && facets.total ? (facets.provincial / facets.total) * 100 : undefined}
-            />
+            <StatCard icon={<LayoutGrid />} label="收录项目" value={facets?.total} unit="项" />
+            <StatCard icon={<Trophy />} label="国家级获奖" value={facets?.national} unit="项" />
+            <StatCard icon={<Medal />} label="省级获奖" value={facets?.provincial} unit="项" />
             <StatCard icon={<ChartColumn />} label="年份跨度" value={span} />
           </dl>
         </section>
@@ -221,36 +208,25 @@ function StatCard({
   label,
   value,
   unit,
-  bar,
 }: {
   icon: React.ReactNode
   label: string
   value?: number | string | null
   unit?: string
-  /** 占比数据条（0-100），不传则不显示 */
-  bar?: number
 }) {
   return (
     <div className="tech-card flex items-center gap-4 overflow-hidden rounded-xl border border-border bg-card/80 p-4 shadow-card backdrop-blur-md sm:p-5">
       <span className="flex size-10 shrink-0 items-center justify-center rounded-lg bg-primary/15 text-primary ring-1 ring-primary/30 [&_svg]:size-5">
         {icon}
       </span>
-      <div className="min-w-0 flex-1">
-        <dt className="font-mono text-xs uppercase tracking-wider text-muted-foreground">{label}</dt>
-        <dd className="mt-0.5 text-2xl font-semibold tabular-nums tracking-tight text-primary">
+      <div className="min-w-0">
+        <dt className="text-xs text-muted-foreground">{label}</dt>
+        <dd className="text-glow-primary mt-0.5 text-2xl font-semibold tabular-nums tracking-tight text-primary">
           {value ?? "—"}
           {unit && value != null && (
             <span className="ml-1 text-sm font-normal text-muted-foreground">{unit}</span>
           )}
         </dd>
-        {bar != null && value != null && (
-          <div aria-hidden className="mt-1.5 h-1 w-full overflow-hidden rounded bg-primary/20">
-            <div
-              className="h-1 rounded bg-gradient-to-r from-primary to-hud transition-[width] duration-500"
-              style={{ width: `${Math.round(Math.min(100, Math.max(0, bar)))}%` }}
-            />
-          </div>
-        )}
       </div>
     </div>
   )
