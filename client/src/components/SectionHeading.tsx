@@ -35,7 +35,7 @@ export function SectionHeading({ title, type, icon, count, description, classNam
         </span>
       )}
       <div className="min-w-0">
-        <p className="track-code font-mono text-[11px] font-medium leading-none tracking-widest">
+        <p className="track-code font-mono text-xs font-medium leading-none tracking-[0.2em]">
           {trackCode}
         </p>
         <h2 className="mt-1 text-xl font-semibold leading-none tracking-tight">{title}</h2>

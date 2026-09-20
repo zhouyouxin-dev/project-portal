@@ -145,8 +145,9 @@ export default function Home() {
         <section className="tech-card relative rounded-2xl border border-primary/25 bg-card/80 p-5 shadow-card backdrop-blur-md sm:p-6">
           <span aria-hidden className="hud-corner hud-corner-tl" />
           <span aria-hidden className="hud-corner hud-corner-br" />
-          <p className="mb-3 flex items-center gap-2 font-mono text-[11px] font-medium tracking-widest text-hud">
-            <span aria-hidden className="inline-block size-1.5 rounded-full bg-hud" />
+          <span aria-hidden className="hud-bar" />
+          <p className="mb-3 flex items-center gap-2 font-mono text-xs font-medium tracking-widest text-hud">
+            <span aria-hidden className="inline-block size-2 rounded-full bg-hud" />
             SYS.READY — 项目检索终端
           </p>
           <FilterBar

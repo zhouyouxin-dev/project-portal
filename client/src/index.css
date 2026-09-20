@@ -261,35 +261,48 @@
   */
   .hud-corner {
     position: absolute;
-    width: 14px;
-    height: 14px;
+    width: 18px;
+    height: 18px;
     z-index: 2;
     pointer-events: none;
   }
   .hud-corner-tl {
-    top: 8px;
-    left: 8px;
-    border-top: 2px solid hsl(var(--hud) / 0.85);
-    border-left: 2px solid hsl(var(--hud) / 0.85);
+    top: 6px;
+    left: 6px;
+    border-top: 3px solid hsl(var(--hud) / 0.95);
+    border-left: 3px solid hsl(var(--hud) / 0.95);
     border-radius: 3px 0 0 0;
   }
   .hud-corner-tr {
-    top: 8px;
-    right: 8px;
-    border-top: 2px solid hsl(var(--primary) / 0.60);
-    border-right: 2px solid hsl(var(--primary) / 0.60);
+    top: 6px;
+    right: 6px;
+    border-top: 3px solid hsl(var(--primary) / 0.85);
+    border-right: 3px solid hsl(var(--primary) / 0.85);
     border-radius: 0 3px 0 0;
     transition: border-color 0.25s ease;
   }
   .hud-corner-br {
-    bottom: 8px;
-    right: 8px;
-    border-bottom: 2px solid hsl(var(--hud) / 0.85);
-    border-right: 2px solid hsl(var(--hud) / 0.85);
+    bottom: 6px;
+    right: 6px;
+    border-bottom: 3px solid hsl(var(--hud) / 0.95);
+    border-right: 3px solid hsl(var(--hud) / 0.95);
     border-radius: 0 0 3px 0;
   }
   .group:hover .hud-corner-tr {
     border-color: hsl(var(--primary) / 1);
+  }
+
+  /* HUD 竖条：面板左侧的青绿定位条，一眼可见的取景标记 */
+  .hud-bar {
+    position: absolute;
+    left: -1px;
+    top: 18px;
+    bottom: 18px;
+    width: 4px;
+    border-radius: 0 2px 2px 0;
+    background: hsl(var(--hud) / 0.9);
+    z-index: 2;
+    pointer-events: none;
   }
 
   /* 赛道代码标签：TRACK_01 之类的等宽小字，颜色跟赛道色相走 */
@@ -302,10 +315,10 @@
 
   /* 赛道能量线末端的青绿短刻度，HUD 取景框的句号 */
   .track-tick {
-    width: 28px;
-    height: 3px;
+    width: 36px;
+    height: 4px;
     border-radius: 2px;
-    background: hsl(var(--hud) / 0.85);
+    background: hsl(var(--hud) / 0.9);
   }
 
   /*
