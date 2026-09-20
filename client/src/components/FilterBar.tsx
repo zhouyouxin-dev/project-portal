@@ -89,7 +89,7 @@ export function FilterBar({
             onChange={(e) => onSearchInput(e.target.value)}
             placeholder="搜索项目名称、简介、成员或指导教师"
             aria-label="检索项目"
-            className="h-11 w-full rounded-full border border-input bg-background pl-11 pr-4 text-sm shadow-sm outline-none transition-[border-color,box-shadow] duration-150 placeholder:text-muted-foreground focus-visible:border-foreground focus-visible:ring-2 focus-visible:ring-ring/15"
+            className="h-11 w-full rounded-full border border-primary/30 bg-card/70 pl-11 pr-4 text-sm shadow-sm outline-none backdrop-blur-sm transition-[border-color,box-shadow] duration-150 placeholder:text-muted-foreground focus-visible:border-primary/60 focus-visible:shadow-[0_0_0_4px_hsl(var(--primary)/0.15),0_0_18px_hsl(var(--primary)/0.25)]"
           />
         </div>
         <span className="hidden shrink-0 text-sm tabular-nums text-muted-foreground sm:inline">
@@ -189,11 +189,11 @@ function FilterRow({
               aria-pressed={active}
               onClick={() => onSelect(opt.value)}
               className={cn(
-                "shrink-0 cursor-pointer rounded-full border px-3 py-1 text-sm transition-colors duration-150",
+                "shrink-0 cursor-pointer rounded-full border px-3 py-1 text-sm transition-[color,border-color,background-color,box-shadow] duration-150",
                 mono && "tabular-nums",
                 active
-                  ? "border-foreground bg-foreground text-background"
-                  : "border-border bg-card text-muted-foreground hover:border-foreground/40 hover:text-foreground",
+                  ? "btn-tech glow-primary border-transparent text-white"
+                  : "border-primary/25 bg-primary/5 text-muted-foreground hover:border-primary/55 hover:bg-primary/10 hover:text-primary",
               )}
             >
               {opt.label}
