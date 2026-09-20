@@ -3,9 +3,9 @@
 @tailwind utilities;
 
 /*
-  设计基调：科技蓝（Tech Blue）
-  ── 主色为高饱和科技蓝（HSL 217 91% 50%），按钮、选中态、徽标、焦点环全部取主色
-  ── 背景/卡片带轻微蓝色倾向，避免纯灰的冷淡感；层级仍靠明度与阴影表达
+  设计基调：荧光科技蓝（Electric Blue）
+  ── 主色为高亮电光蓝（HSL 197 100% 46%，接近 #0095ff），色相偏青、明度拉满
+  ── 背景/卡片带青蓝倾向，暗色模式为深海蓝底 + 荧光蓝主色
   ── 奖项徽章保留奖牌色：特等/一等=金、二等=银、三等=铜、优秀=灰
   ── 赛道各有一个柔和色相，只用于「无封面」时的占位渐变
   ── 圆角 + 柔和阴影 + 卡片；系统无衬线字体，不加载外部字体
@@ -13,30 +13,30 @@
 
 @layer base {
   :root {
-    --background: 214 55% 97.5%;
-    --foreground: 216 35% 11%;
+    --background: 202 55% 97.5%;
+    --foreground: 210 40% 11%;
 
     --card: 0 0% 100%;
-    --card-foreground: 216 35% 11%;
+    --card-foreground: 210 40% 11%;
     --popover: 0 0% 100%;
-    --popover-foreground: 216 35% 11%;
+    --popover-foreground: 210 40% 11%;
 
-    --primary: 217 91% 50%;
+    --primary: 197 100% 46%;
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 214 45% 93.5%;
-    --secondary-foreground: 216 45% 20%;
-    --muted: 214 35% 94%;
-    --muted-foreground: 216 16% 42%;
-    --accent: 213 65% 92%;
-    --accent-foreground: 216 50% 24%;
+    --secondary: 202 45% 93.5%;
+    --secondary-foreground: 205 45% 20%;
+    --muted: 202 35% 94%;
+    --muted-foreground: 206 18% 42%;
+    --accent: 199 75% 91%;
+    --accent-foreground: 203 55% 24%;
 
     --destructive: 0 72% 46%;
     --destructive-foreground: 0 0% 98%;
 
-    --border: 214 28% 87%;
-    --input: 214 25% 81%;
-    --ring: 217 91% 50%;
+    --border: 202 30% 86%;
+    --input: 202 28% 80%;
+    --ring: 197 100% 46%;
 
     --radius: 0.75rem;
 
@@ -52,30 +52,30 @@
   }
 
   .dark {
-    --background: 218 38% 7%;
-    --foreground: 214 40% 94%;
+    --background: 205 45% 6.5%;
+    --foreground: 199 45% 94%;
 
-    --card: 218 32% 10.5%;
-    --card-foreground: 214 40% 94%;
-    --popover: 218 32% 11.5%;
-    --popover-foreground: 214 40% 94%;
+    --card: 205 38% 10%;
+    --card-foreground: 199 45% 94%;
+    --popover: 205 38% 11%;
+    --popover-foreground: 199 45% 94%;
 
-    --primary: 214 92% 58%;
-    --primary-foreground: 218 60% 8%;
+    --primary: 193 100% 55%;
+    --primary-foreground: 205 60% 7%;
 
-    --secondary: 218 26% 15.5%;
-    --secondary-foreground: 214 35% 92%;
-    --muted: 218 26% 15.5%;
-    --muted-foreground: 214 16% 62%;
-    --accent: 217 32% 17.5%;
-    --accent-foreground: 214 45% 92%;
+    --secondary: 205 30% 15.5%;
+    --secondary-foreground: 199 40% 92%;
+    --muted: 205 30% 15.5%;
+    --muted-foreground: 201 18% 62%;
+    --accent: 202 38% 17.5%;
+    --accent-foreground: 199 50% 92%;
 
     --destructive: 0 62% 58%;
     --destructive-foreground: 0 0% 9%;
 
-    --border: 218 24% 18%;
-    --input: 218 22% 24%;
-    --ring: 214 85% 60%;
+    --border: 205 28% 18%;
+    --input: 205 25% 24%;
+    --ring: 193 100% 58%;
 
     --medal-gold: 43 80% 50%;
     --medal-gold-foreground: 28 70% 10%;
