@@ -141,15 +141,8 @@ export default function Home() {
           </dl>
         </section>
 
-        {/* ── 检索：HUD 取景框（青绿对角瞄准角 + 代码行） ── */}
-        <section className="tech-card relative rounded-2xl border border-primary/25 bg-card/80 p-5 shadow-card backdrop-blur-md sm:p-6">
-          <span aria-hidden className="hud-corner hud-corner-tl" />
-          <span aria-hidden className="hud-corner hud-corner-br" />
-          <span aria-hidden className="hud-bar" />
-          <p className="mb-3 flex items-center gap-2 font-mono text-xs font-medium tracking-widest text-hud">
-            <span aria-hidden className="inline-block size-2 rounded-full bg-hud" />
-            SYS.READY — 项目检索终端
-          </p>
+        {/* ── 检索 ── */}
+        <section className="tech-card rounded-2xl border border-primary/25 bg-card/80 p-5 shadow-card backdrop-blur-md sm:p-6">
           <FilterBar
             filters={filters}
             onChange={setFilters}

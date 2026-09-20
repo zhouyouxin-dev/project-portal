@@ -38,9 +38,6 @@
     --input: 205 30% 76%;
     --ring: 199 95% 45%;
 
-    /* HUD 青绿点缀：瞄准角 / 代码标签用，与电光蓝形成双色 HUD 语言 */
-    --hud: 168 72% 26%;
-
     --radius: 0.75rem;
 
     /* 奖牌色：bg / fg 成对，solid 徽章直接用；soft 徽章用 bg 的透明度版本 */
@@ -79,8 +76,6 @@
     --border: 210 40% 27%;
     --input: 210 38% 33%;
     --ring: 197 100% 50%;
-
-    --hud: 165 60% 55%;
 
     --medal-gold: 43 80% 50%;
     --medal-gold-foreground: 28 70% 10%;
@@ -251,74 +246,6 @@
   .tech-corner:hover::after {
     opacity: 1;
     transform: translate(0, 0);
-  }
-
-  /*
-    HUD 恒亮瞄准角：浅色 HUD 混合风的身份元素。
-    与 .tech-corner（悬浮才浮现）不同，这组是常驻的直角标，
-    由组件里 <span aria-hidden class="hud-corner hud-corner-tr" /> 手动摆放，
-    不占用伪元素（伪元素留给 .tech-card 能量线）。
-  */
-  .hud-corner {
-    position: absolute;
-    width: 18px;
-    height: 18px;
-    z-index: 2;
-    pointer-events: none;
-  }
-  .hud-corner-tl {
-    top: 6px;
-    left: 6px;
-    border-top: 3px solid hsl(var(--hud) / 0.95);
-    border-left: 3px solid hsl(var(--hud) / 0.95);
-    border-radius: 3px 0 0 0;
-  }
-  .hud-corner-tr {
-    top: 6px;
-    right: 6px;
-    border-top: 3px solid hsl(var(--primary) / 0.85);
-    border-right: 3px solid hsl(var(--primary) / 0.85);
-    border-radius: 0 3px 0 0;
-    transition: border-color 0.25s ease;
-  }
-  .hud-corner-br {
-    bottom: 6px;
-    right: 6px;
-    border-bottom: 3px solid hsl(var(--hud) / 0.95);
-    border-right: 3px solid hsl(var(--hud) / 0.95);
-    border-radius: 0 0 3px 0;
-  }
-  .group:hover .hud-corner-tr {
-    border-color: hsl(var(--primary) / 1);
-  }
-
-  /* HUD 竖条：面板左侧的青绿定位条，一眼可见的取景标记 */
-  .hud-bar {
-    position: absolute;
-    left: -1px;
-    top: 18px;
-    bottom: 18px;
-    width: 4px;
-    border-radius: 0 2px 2px 0;
-    background: hsl(var(--hud) / 0.9);
-    z-index: 2;
-    pointer-events: none;
-  }
-
-  /* 赛道代码标签：TRACK_01 之类的等宽小字，颜色跟赛道色相走 */
-  .track-code {
-    color: hsl(var(--track-hue) 58% 34%);
-  }
-  .dark .track-code {
-    color: hsl(var(--track-hue) 62% 68%);
-  }
-
-  /* 赛道能量线末端的青绿短刻度，HUD 取景框的句号 */
-  .track-tick {
-    width: 36px;
-    height: 4px;
-    border-radius: 2px;
-    background: hsl(var(--hud) / 0.9);
   }
 
   /*
