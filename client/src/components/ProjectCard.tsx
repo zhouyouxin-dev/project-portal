@@ -24,9 +24,11 @@ export function ProjectCard({ project }: ProjectCardProps) {
 
   return (
     <article className="tech-card tech-corner group relative flex flex-col overflow-hidden rounded-xl border border-border bg-card/85 shadow-card backdrop-blur-md transition-[transform,box-shadow,border-color] duration-200 hover:-translate-y-0.5 hover:shadow-card-hover hover:border-primary/40 focus-within:ring-2 focus-within:ring-ring/30">
+      {/* HUD 恒亮瞄准角：右上角电光蓝直角标，悬浮时增亮 */}
+      <span aria-hidden className="hud-corner hud-corner-tr" />
       <CoverImage src={project.coverUrl} type={project.type} zoomOnHover>
         {award && <AwardBadge award={award} size="sm" className="absolute left-3 top-3 shadow-sm" />}
-        <span className="absolute right-3 top-3 rounded-full bg-black/55 px-2 py-0.5 text-xs font-medium tabular-nums text-white backdrop-blur-sm">
+        <span className="absolute bottom-3 right-3 rounded-full bg-black/55 px-2 py-0.5 text-xs font-medium tabular-nums text-white backdrop-blur-sm">
           {project.year}
         </span>
       </CoverImage>
@@ -41,7 +43,7 @@ export function ProjectCard({ project }: ProjectCardProps) {
               {project.title}
             </Link>
           </h3>
-          <p className="mt-1.5 flex items-center gap-1.5 text-xs text-muted-foreground">
+          <p className="mt-1.5 flex items-center gap-1.5 font-mono text-xs text-muted-foreground">
             <TypeIcon type={project.type} className="size-3.5" />
             <span>{typeLabel(project.type)}</span>
             {project.awards.length > 1 && (

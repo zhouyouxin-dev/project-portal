@@ -61,6 +61,8 @@ module.exports = {
           DEFAULT: "hsl(var(--card) / <alpha-value>)",
           foreground: "hsl(var(--card-foreground) / <alpha-value>)",
         },
+        // HUD 青绿点缀色：瞄准角 / 代码行
+        hud: "hsl(var(--hud) / <alpha-value>)",
         // 全站唯一的彩色：奖项徽章按等级取色
         medal: {
           gold: {
