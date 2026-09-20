@@ -269,6 +269,7 @@ const RELATED_SYSTEMS: RelatedSystem[] = [
     url: "http://43.139.126.174:9091/check_paper/check_paper.html",
     host: "43.139.126.174:9091",
     icon: <FileCheck2 />,
+    video: "/videos/check-paper-competition.mp4",
   },
   {
     name: "智慧法链 AI",
