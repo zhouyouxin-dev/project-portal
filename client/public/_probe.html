@@ -1,0 +1,16 @@
+<!doctype html>
+<!-- 临时验证页：设置主题 / 登录后跳转。验证完成后删除。 -->
+<script>
+(async () => {
+  const q = new URLSearchParams(location.search);
+  localStorage.setItem('portal-theme', q.get('dark') ? 'dark' : 'light');
+  if (q.get('login')) {
+    await fetch('/api/auth/login', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ username: 'admin', password: 'admin123' }),
+    });
+  }
+  location.replace(q.get('to') || '/');
+})();
+</script>

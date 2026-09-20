@@ -1,0 +1,259 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/*
+  设计基调：现代产品风
+  ── 中性灰阶为主：按钮、文字、边框全部无彩色，层级靠明度与阴影表达
+  ── 唯一的颜色留给奖项徽章：特等/一等=金、二等=银、三等=铜、优秀=灰
+  ── 赛道各有一个柔和色相，只用于「无封面」时的占位渐变
+  ── 圆角 + 柔和阴影 + 卡片；系统无衬线字体，不加载外部字体
+*/
+
+@layer base {
+  :root {
+    --background: 0 0% 97.5%;
+    --foreground: 0 0% 9%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 9%;
+
+    --primary: 0 0% 9%;
+    --primary-foreground: 0 0% 98%;
+
+    --secondary: 0 0% 94%;
+    --secondary-foreground: 0 0% 9%;
+    --muted: 0 0% 94%;
+    --muted-foreground: 0 0% 42%;
+    --accent: 0 0% 92%;
+    --accent-foreground: 0 0% 9%;
+
+    --destructive: 0 72% 46%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 0 0% 88%;
+    --input: 0 0% 82%;
+    --ring: 0 0% 9%;
+
+    --radius: 0.75rem;
+
+    /* 奖牌色：bg / fg 成对，solid 徽章直接用；soft 徽章用 bg 的透明度版本 */
+    --medal-gold: 43 96% 56%;
+    --medal-gold-foreground: 28 60% 16%;
+    --medal-silver: 215 12% 78%;
+    --medal-silver-foreground: 215 20% 18%;
+    --medal-bronze: 24 60% 55%;
+    --medal-bronze-foreground: 24 60% 12%;
+    --medal-plain: 0 0% 88%;
+    --medal-plain-foreground: 0 0% 25%;
+  }
+
+  .dark {
+    --background: 0 0% 7%;
+    --foreground: 0 0% 93%;
+
+    --card: 0 0% 10%;
+    --card-foreground: 0 0% 93%;
+    --popover: 0 0% 11%;
+    --popover-foreground: 0 0% 93%;
+
+    --primary: 0 0% 93%;
+    --primary-foreground: 0 0% 9%;
+
+    --secondary: 0 0% 15%;
+    --secondary-foreground: 0 0% 93%;
+    --muted: 0 0% 15%;
+    --muted-foreground: 0 0% 62%;
+    --accent: 0 0% 16%;
+    --accent-foreground: 0 0% 93%;
+
+    --destructive: 0 62% 58%;
+    --destructive-foreground: 0 0% 9%;
+
+    --border: 0 0% 18%;
+    --input: 0 0% 24%;
+    --ring: 0 0% 83%;
+
+    --medal-gold: 43 80% 50%;
+    --medal-gold-foreground: 28 70% 10%;
+    --medal-silver: 215 10% 70%;
+    --medal-silver-foreground: 215 25% 12%;
+    --medal-bronze: 24 55% 50%;
+    --medal-bronze-foreground: 24 60% 10%;
+    --medal-plain: 0 0% 26%;
+    --medal-plain-foreground: 0 0% 85%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    font-feature-settings: "kern" 1, "liga" 1, "tnum" 0;
+    text-rendering: optimizeLegibility;
+  }
+
+  ::selection {
+    @apply bg-foreground text-background;
+  }
+
+  :focus-visible {
+    @apply outline-none ring-2 ring-ring/30 ring-offset-2 ring-offset-background;
+  }
+
+  /* 锚点跳转时为 sticky 顶栏留出空间 */
+  [id] {
+    scroll-margin-top: 5.5rem;
+  }
+
+  /* 尊重系统的「减少动态效果」设置 */
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}
+
+@layer components {
+  /* 小标签：区块名、字段名之类的辅助文字 */
+  .eyebrow {
+    @apply text-xs font-medium uppercase tracking-wider text-muted-foreground;
+  }
+
+  /*
+    无封面占位：按赛道色相生成柔和渐变。
+    色相由组件通过 style={{ "--cover-hue": n }} 注入，这里只负责明度与饱和度。
+  */
+  .cover-placeholder {
+    --cover-hue: 220;
+    background-image: linear-gradient(
+      135deg,
+      hsl(var(--cover-hue) 60% 92%) 0%,
+      hsl(calc(var(--cover-hue) + 30) 55% 82%) 100%
+    );
+    color: hsl(var(--cover-hue) 35% 32%);
+  }
+
+  .dark .cover-placeholder {
+    background-image: linear-gradient(
+      135deg,
+      hsl(var(--cover-hue) 30% 20%) 0%,
+      hsl(calc(var(--cover-hue) + 30) 26% 14%) 100%
+    );
+    color: hsl(var(--cover-hue) 40% 72%);
+  }
+
+  /* 横向滚动条隐藏：筛选胶囊在窄屏下横向滑动 */
+  .no-scrollbar {
+    scrollbar-width: none;
+  }
+
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+/* ── Markdown 正文排版 ─────────────────────────────────────── */
+
+.markdown-body {
+  @apply text-base leading-7;
+}
+
+.markdown-body > *:first-child {
+  @apply mt-0;
+}
+
+.markdown-body h1 {
+  @apply mb-4 mt-10 text-2xl font-semibold tracking-tight;
+}
+
+.markdown-body h2 {
+  @apply mb-4 mt-10 text-xl font-semibold tracking-tight;
+}
+
+.markdown-body h3 {
+  @apply mb-2 mt-7 text-lg font-semibold;
+}
+
+.markdown-body p {
+  @apply my-4;
+}
+
+.markdown-body ul,
+.markdown-body ol {
+  @apply my-4 space-y-1.5 pl-6;
+}
+
+.markdown-body ul {
+  @apply list-disc;
+}
+
+.markdown-body ol {
+  @apply list-decimal;
+}
+
+.markdown-body li::marker {
+  @apply text-muted-foreground;
+}
+
+.markdown-body strong {
+  @apply font-semibold;
+}
+
+.markdown-body a {
+  @apply font-medium underline underline-offset-4 decoration-border transition-colors duration-150 hover:decoration-foreground;
+}
+
+.markdown-body code {
+  @apply rounded-md bg-muted px-1.5 py-0.5 font-mono text-[0.875em];
+}
+
+.markdown-body pre {
+  @apply my-6 overflow-x-auto rounded-xl border border-border bg-muted p-4 font-mono text-sm leading-relaxed;
+}
+
+.markdown-body pre code {
+  @apply bg-transparent p-0 text-sm;
+}
+
+.markdown-body blockquote {
+  @apply my-6 rounded-r-lg border-l-4 border-border bg-muted/40 py-2 pl-5 pr-4 text-muted-foreground;
+}
+
+.markdown-body table {
+  @apply my-6 w-full border-collapse overflow-hidden rounded-lg border border-border text-sm;
+}
+
+.markdown-body th {
+  @apply border-b border-border bg-muted/60 px-3 py-2 text-left text-xs font-medium text-muted-foreground;
+}
+
+.markdown-body td {
+  @apply border-b border-border px-3 py-2.5 text-left align-top;
+}
+
+.markdown-body tbody tr:last-child td {
+  @apply border-b-0;
+}
+
+.markdown-body hr {
+  @apply my-10 border-border;
+}
+
+.markdown-body img {
+  @apply my-6 w-full rounded-xl border border-border;
+}

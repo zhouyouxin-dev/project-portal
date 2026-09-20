@@ -1,0 +1,92 @@
+server:
+  port: ${SERVER_PORT:8080}
+  # 反向代理后仍能正确识别 https / 客户端 IP（Cookie Secure 判定、登录限流依赖）
+  forward-headers-strategy: framework
+  tomcat:
+    # 上传超限被拒时，Tomcat 默认只吞掉 2MB 剩余请求体就断连，
+    # 300MB 的视频会让浏览器收到 RST 而非我们返回的 400 提示。-1 表示照单全收，
+    # 前端才有机会显示「文件大小不能超过 300MB」
+    max-swallow-size: -1
+    connection-timeout: 120000
+
+spring:
+  application:
+    name: project-portal
+  profiles:
+    # 默认 dev；生产部署务必设置 SPRING_PROFILES_ACTIVE=prod
+    active: ${SPRING_PROFILES_ACTIVE:dev}
+  datasource:
+    # H2 文件库开箱即用；切 MySQL 只需注入 DB_URL / DB_DRIVER / DB_USERNAME / DB_PASSWORD
+    url: ${DB_URL:jdbc:h2:file:./data/portal;AUTO_SERVER=TRUE}
+    driver-class-name: ${DB_DRIVER:org.h2.Driver}
+    username: ${DB_USERNAME:sa}
+    password: ${DB_PASSWORD:}
+  jpa:
+    hibernate:
+      ddl-auto: ${DDL_AUTO:update}
+    open-in-view: false
+    properties:
+      hibernate:
+        format_sql: false
+  servlet:
+    multipart:
+      # 演示视频上限 300MB，留出 multipart 封装与表单字段的余量。
+      # 这是全局唯一的一个值：图片 5MB、PPT 100MB 等分级限额由各 Controller / Service 自己守
+      max-file-size: 320MB
+      max-request-size: 320MB
+      # 0 表示任何大小都直接写临时文件，不在堆里缓冲 —— 并发上传大视频时内存不会被顶爆
+      file-size-threshold: 0
+      # 临时目录由 MultipartConfig 覆盖为上传目录的同盘旁路，此处不配
+
+app:
+  admin:
+    username: ${ADMIN_USERNAME:admin}
+    password: ${ADMIN_PASSWORD:admin123}
+  jwt:
+    # 生产环境无默认值：未注入 JWT_SECRET 会直接启动失败，避免用公开密钥签发管理员令牌
+    secret: ${JWT_SECRET:}
+    expire-hours: ${JWT_EXPIRE_HOURS:72}
+  cookie:
+    secure: ${COOKIE_SECURE:false}
+    same-site: ${COOKIE_SAME_SITE:Lax}
+  cors:
+    allowed-origins: ${CORS_ALLOWED_ORIGINS:http://localhost:5173,http://127.0.0.1:5173}
+  login:
+    max-attempts: ${LOGIN_MAX_ATTEMPTS:5}
+    lockout-minutes: ${LOGIN_LOCKOUT_MINUTES:15}
+  upload-dir: ${UPLOAD_DIR:./uploads}
+
+logging:
+  level:
+    com.portal: info
+    org.hibernate.SQL: warn
+
+---
+# ── 开发环境 ─────────────────────────────────────────────────
+# H2 控制台仅在此 profile 启用，且安全层额外限制为「仅本机 IP 可访问」
+spring:
+  config:
+    activate:
+      on-profile: dev
+  h2:
+    console:
+      enabled: true
+      path: /h2-console
+
+app:
+  jwt:
+    secret: ${JWT_SECRET:dev-only-secret-key-change-me-in-production-0123456789abcdef}
+
+---
+# ── 生产环境 ─────────────────────────────────────────────────
+spring:
+  config:
+    activate:
+      on-profile: prod
+  h2:
+    console:
+      enabled: false
+
+app:
+  cookie:
+    secure: ${COOKIE_SECURE:true}
