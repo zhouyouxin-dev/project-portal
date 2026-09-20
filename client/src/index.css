@@ -229,6 +229,21 @@
   }
 
   /*
+    大屏模式（.dark）：能量线从顶部横线改为左侧竖条，
+    配合等宽数字就是指挥中心数据屏的气质。
+  */
+  .dark .tech-card::before {
+    inset: 8px auto 8px 0;
+    width: 3px;
+    height: auto;
+    background: linear-gradient(
+      180deg,
+      hsl(var(--primary) / 0.9) 0%,
+      hsl(var(--primary) / 0.35) 100%
+    );
+  }
+
+  /*
     HUD 瞄准角：悬浮时右下角浮现电光蓝直角标，像取景框。
     只占一个角，克制不抢内容。
   */

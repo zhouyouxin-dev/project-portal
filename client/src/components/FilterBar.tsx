@@ -189,14 +189,14 @@ function FilterRow({
               aria-pressed={active}
               onClick={() => onSelect(opt.value)}
               className={cn(
-                "shrink-0 cursor-pointer rounded-full border px-3 py-1 text-sm transition-[color,border-color,background-color,box-shadow] duration-150",
+                "shrink-0 cursor-pointer rounded-md border px-3 py-1 font-mono text-sm transition-[color,border-color,background-color,box-shadow] duration-150",
                 mono && "tabular-nums",
                 active
-                  ? "btn-tech glow-primary border-transparent text-white"
+                  ? "border-hud/70 bg-hud/10 text-hud"
                   : "border-primary/25 bg-primary/5 text-muted-foreground hover:border-primary/55 hover:bg-primary/10 hover:text-primary",
               )}
             >
-              {opt.label}
+              {active ? `[ ${opt.label} ]` : opt.label}
             </button>
           )
         })}
