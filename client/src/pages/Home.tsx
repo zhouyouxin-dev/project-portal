@@ -142,7 +142,7 @@ export default function Home() {
         </section>
 
         {/* ── 检索 ── */}
-        <section className="rounded-2xl border border-primary/25 bg-card/80 p-5 shadow-card backdrop-blur-md sm:p-6">
+        <section className="tech-card rounded-2xl border border-primary/25 bg-card/80 p-5 shadow-card backdrop-blur-md sm:p-6">
           <FilterBar
             filters={filters}
             onChange={setFilters}
@@ -208,7 +208,7 @@ function StatCard({
   unit?: string
 }) {
   return (
-    <div className="flex items-center gap-4 rounded-xl border border-border bg-card/80 p-4 shadow-card backdrop-blur-md sm:p-5">
+    <div className="tech-card flex items-center gap-4 overflow-hidden rounded-xl border border-border bg-card/80 p-4 shadow-card backdrop-blur-md sm:p-5">
       <span className="flex size-10 shrink-0 items-center justify-center rounded-lg bg-primary/15 text-primary ring-1 ring-primary/30 [&_svg]:size-5">
         {icon}
       </span>

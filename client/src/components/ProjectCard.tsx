@@ -23,7 +23,7 @@ export function ProjectCard({ project }: ProjectCardProps) {
   const extraTags = Math.max(0, project.tags.length - MAX_TAGS)
 
   return (
-    <article className="group relative flex flex-col overflow-hidden rounded-xl border border-border bg-card/85 shadow-card backdrop-blur-md transition-[transform,box-shadow,border-color] duration-200 hover:-translate-y-0.5 hover:shadow-card-hover hover:border-primary/40 focus-within:ring-2 focus-within:ring-ring/30">
+    <article className="tech-card tech-corner group relative flex flex-col overflow-hidden rounded-xl border border-border bg-card/85 shadow-card backdrop-blur-md transition-[transform,box-shadow,border-color] duration-200 hover:-translate-y-0.5 hover:shadow-card-hover hover:border-primary/40 focus-within:ring-2 focus-within:ring-ring/30">
       <CoverImage src={project.coverUrl} type={project.type} zoomOnHover>
         {award && <AwardBadge award={award} size="sm" className="absolute left-3 top-3 shadow-sm" />}
         <span className="absolute right-3 top-3 rounded-full bg-black/55 px-2 py-0.5 text-xs font-medium tabular-nums text-white backdrop-blur-sm">

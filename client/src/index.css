@@ -195,6 +195,60 @@
   }
 
   /*
+    科技卡片：顶部一条电光蓝「能量线」，平时半亮、悬浮时全亮。
+    用于统计卡 / 检索面板 / 项目卡，给方框统一的科技身份。
+  */
+  .tech-card {
+    position: relative;
+  }
+  .tech-card::before {
+    content: "";
+    position: absolute;
+    inset: 0 0 auto 0;
+    height: 2px;
+    z-index: 1;
+    pointer-events: none;
+    background: linear-gradient(
+      90deg,
+      transparent 0%,
+      hsl(var(--primary) / 0.85) 18%,
+      hsl(217 95% 62% / 0.9) 50%,
+      hsl(var(--primary) / 0.85) 82%,
+      transparent 100%
+    );
+    opacity: 0.45;
+    transition: opacity 0.25s ease;
+  }
+  .tech-card:hover::before {
+    opacity: 1;
+  }
+
+  /*
+    HUD 瞄准角：悬浮时右下角浮现电光蓝直角标，像取景框。
+    只占一个角，克制不抢内容。
+  */
+  .tech-corner::after {
+    content: "";
+    position: absolute;
+    right: 10px;
+    bottom: 10px;
+    width: 16px;
+    height: 16px;
+    z-index: 1;
+    pointer-events: none;
+    border-right: 2px solid hsl(var(--primary) / 0.75);
+    border-bottom: 2px solid hsl(var(--primary) / 0.75);
+    border-radius: 0 0 3px 0;
+    opacity: 0;
+    transform: translate(3px, 3px);
+    transition: opacity 0.25s ease, transform 0.25s ease;
+  }
+  .tech-corner:hover::after {
+    opacity: 1;
+    transform: translate(0, 0);
+  }
+
+  /*
     无封面占位：按赛道色相生成柔和渐变。
     色相由组件通过 style={{ "--cover-hue": n }} 注入，这里只负责明度与饱和度。
   */
