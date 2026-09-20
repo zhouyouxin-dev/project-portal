@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from "react"
 import { useSearchParams } from "react-router-dom"
-import { ChartColumn, ExternalLink, FileCheck2, LayoutGrid, Medal, Mic, Play, Scale, SearchX, ServerOff, Trophy } from "lucide-react"
+import { ChartColumn, Download, ExternalLink, FileCheck2, LayoutGrid, Medal, Mic, Play, Presentation, Scale, SearchX, ServerOff, Trophy } from "lucide-react"
 import { api, ApiError } from "@/lib/api"
 import { useDebounce } from "@/hooks/use-debounce"
 import { useDocumentTitle } from "@/hooks/use-document-title"
@@ -207,8 +207,9 @@ export default function Home() {
                     {/* 拉伸链接：整卡可点开系统，视频按钮单独抬高 z-index */}
                     <a
                       href={sys.url}
-                      target="_blank"
+                      target={sys.download ? undefined : "_blank"}
                       rel="noopener noreferrer"
+                      download={sys.download}
                       className="outline-none after:absolute after:inset-0 after:content-['']"
                     >
                       {sys.name}
@@ -233,6 +234,12 @@ export default function Home() {
                       参赛视频
                     </a>
                   )}
+                  {sys.download && (
+                    <span className="inline-flex shrink-0 items-center gap-1 rounded-full border border-primary/30 bg-primary/10 px-2.5 py-1 text-xs font-medium text-primary">
+                      <Download aria-hidden className="size-3" />
+                      下载 PPT
+                    </span>
+                  )}
                 </div>
               </article>
             ))}
@@ -253,6 +260,8 @@ interface RelatedSystem {
   icon: React.ReactNode
   /** 可选：参赛视频地址（前端静态目录 public/videos 下） */
   video?: string
+  /** 可选：主链接为文件下载（同源时触发浏览器下载而非打开） */
+  download?: boolean
 }
 
 const RELATED_SYSTEMS: RelatedSystem[] = [
@@ -278,6 +287,14 @@ const RELATED_SYSTEMS: RelatedSystem[] = [
     host: "43.139.126.174:9190",
     icon: <Scale />,
     video: "/videos/zhihuifalian-competition.mp4",
+  },
+  {
+    name: "MOBA智析引擎",
+    description: "参赛答辩 PPT 资料下载（MOBA智析引擎-答辩PPT）",
+    url: "/files/moba-zhixi-ppt.pptx",
+    host: "PPTX · 约 267 MB",
+    icon: <Presentation />,
+    download: true,
   },
 ]
 
