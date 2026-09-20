@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from "react"
 import { useSearchParams } from "react-router-dom"
-import { ChartColumn, LayoutGrid, Medal, SearchX, ServerOff, Trophy } from "lucide-react"
+import { ChartColumn, ExternalLink, FileCheck2, LayoutGrid, Medal, Mic, Scale, SearchX, ServerOff, Trophy } from "lucide-react"
 import { api, ApiError } from "@/lib/api"
 import { useDebounce } from "@/hooks/use-debounce"
 import { useDocumentTitle } from "@/hooks/use-document-title"
@@ -189,12 +189,67 @@ export default function Home() {
             </div>
           )}
         </section>
+
+        {/* ── 相关系统：师兄部署在云服务器上的外部系统入口 ── */}
+        <section className="pb-24" aria-labelledby="related-systems">
+          <SectionHeading title="相关系统" icon={<Scale className="size-5" />} description="学院与团队的其他系统入口" />
+          <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+            {RELATED_SYSTEMS.map((sys) => (
+              <a
+                key={sys.url}
+                href={sys.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="tech-card tech-corner group relative flex flex-col gap-3 overflow-hidden rounded-xl border border-border bg-card/85 p-5 shadow-card backdrop-blur-md transition-[transform,box-shadow,border-color] duration-200 hover:-translate-y-0.5 hover:border-primary/40 hover:shadow-card-hover focus-visible:ring-2 focus-visible:ring-ring/30"
+              >
+                <div className="flex items-center gap-3">
+                  <span className="flex size-10 shrink-0 items-center justify-center rounded-lg bg-primary/15 text-primary ring-1 ring-primary/30 [&_svg]:size-5">
+                    {sys.icon}
+                  </span>
+                  <h3 className="line-clamp-2 text-base font-semibold leading-snug">{sys.name}</h3>
+                  <ExternalLink
+                    aria-hidden
+                    className="ml-auto size-4 shrink-0 text-muted-foreground transition-colors group-hover:text-primary"
+                  />
+                </div>
+                <p className="line-clamp-2 text-sm text-muted-foreground">{sys.description}</p>
+                <p className="mt-auto truncate font-mono text-xs text-muted-foreground">
+                  {sys.host}
+                </p>
+              </a>
+            ))}
+          </div>
+        </section>
       </main>
 
       <Footer />
     </div>
   )
 }
+
+const RELATED_SYSTEMS = [
+  {
+    name: "赛势智绎",
+    description: "体育赛事专业智能解说系统，自动生成专业级赛事解说",
+    url: "http://43.139.126.174:9290/",
+    host: "43.139.126.174:9290",
+    icon: <Mic />,
+  },
+  {
+    name: "毕业论文格式检查系统",
+    description: "广东白云学院毕业论文（设计）格式检查系统",
+    url: "http://43.139.126.174:9091/check_paper/check_paper.html",
+    host: "43.139.126.174:9091",
+    icon: <FileCheck2 />,
+  },
+  {
+    name: "智慧法链 AI",
+    description: "智慧法链 AI 应用平台",
+    url: "http://43.139.126.174:9190/",
+    host: "43.139.126.174:9190",
+    icon: <Scale />,
+  },
+]
 
 function StatCard({
   icon,
