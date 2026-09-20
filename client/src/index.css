@@ -249,6 +249,42 @@
   }
 
   /*
+    赛道板块头部：色相由组件注入 --track-hue（与封面占色同一套映射）。
+    渐变芯片 + 同色计数胶囊 + 向右淡出的能量线，一个赛道一种颜色身份。
+  */
+  .track-chip {
+    background-image: linear-gradient(
+      135deg,
+      hsl(var(--track-hue) 88% 58%) 0%,
+      hsl(calc(var(--track-hue) + 28) 82% 50%) 100%
+    );
+    box-shadow:
+      0 0 16px hsl(var(--track-hue) 90% 55% / 0.40),
+      0 2px 8px rgb(8 40 90 / 0.18);
+  }
+
+  .track-line {
+    height: 2px;
+    border-radius: 1px;
+    background: linear-gradient(
+      90deg,
+      hsl(var(--track-hue) 85% 55% / 0.55) 0%,
+      hsl(var(--track-hue) 85% 60% / 0.18) 55%,
+      transparent 100%
+    );
+  }
+
+  .track-count {
+    border-color: hsl(var(--track-hue) 80% 55% / 0.40);
+    background-color: hsl(var(--track-hue) 85% 55% / 0.09);
+    color: hsl(var(--track-hue) 70% 38%);
+  }
+
+  .dark .track-count {
+    color: hsl(var(--track-hue) 80% 74%);
+  }
+
+  /*
     无封面占位：按赛道色相生成柔和渐变。
     色相由组件通过 style={{ "--cover-hue": n }} 注入，这里只负责明度与饱和度。
   */
