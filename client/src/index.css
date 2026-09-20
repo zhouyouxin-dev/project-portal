@@ -3,39 +3,40 @@
 @tailwind utilities;
 
 /*
-  设计基调：现代产品风
-  ── 中性灰阶为主：按钮、文字、边框全部无彩色，层级靠明度与阴影表达
-  ── 唯一的颜色留给奖项徽章：特等/一等=金、二等=银、三等=铜、优秀=灰
+  设计基调：科技蓝（Tech Blue）
+  ── 主色为高饱和科技蓝（HSL 217 91% 50%），按钮、选中态、徽标、焦点环全部取主色
+  ── 背景/卡片带轻微蓝色倾向，避免纯灰的冷淡感；层级仍靠明度与阴影表达
+  ── 奖项徽章保留奖牌色：特等/一等=金、二等=银、三等=铜、优秀=灰
   ── 赛道各有一个柔和色相，只用于「无封面」时的占位渐变
   ── 圆角 + 柔和阴影 + 卡片；系统无衬线字体，不加载外部字体
 */
 
 @layer base {
   :root {
-    --background: 0 0% 97.5%;
-    --foreground: 0 0% 9%;
+    --background: 214 55% 97.5%;
+    --foreground: 216 35% 11%;
 
     --card: 0 0% 100%;
-    --card-foreground: 0 0% 9%;
+    --card-foreground: 216 35% 11%;
     --popover: 0 0% 100%;
-    --popover-foreground: 0 0% 9%;
+    --popover-foreground: 216 35% 11%;
 
-    --primary: 0 0% 9%;
-    --primary-foreground: 0 0% 98%;
+    --primary: 217 91% 50%;
+    --primary-foreground: 0 0% 100%;
 
-    --secondary: 0 0% 94%;
-    --secondary-foreground: 0 0% 9%;
-    --muted: 0 0% 94%;
-    --muted-foreground: 0 0% 42%;
-    --accent: 0 0% 92%;
-    --accent-foreground: 0 0% 9%;
+    --secondary: 214 45% 93.5%;
+    --secondary-foreground: 216 45% 20%;
+    --muted: 214 35% 94%;
+    --muted-foreground: 216 16% 42%;
+    --accent: 213 65% 92%;
+    --accent-foreground: 216 50% 24%;
 
     --destructive: 0 72% 46%;
     --destructive-foreground: 0 0% 98%;
 
-    --border: 0 0% 88%;
-    --input: 0 0% 82%;
-    --ring: 0 0% 9%;
+    --border: 214 28% 87%;
+    --input: 214 25% 81%;
+    --ring: 217 91% 50%;
 
     --radius: 0.75rem;
 
@@ -51,30 +52,30 @@
   }
 
   .dark {
-    --background: 0 0% 7%;
-    --foreground: 0 0% 93%;
+    --background: 218 38% 7%;
+    --foreground: 214 40% 94%;
 
-    --card: 0 0% 10%;
-    --card-foreground: 0 0% 93%;
-    --popover: 0 0% 11%;
-    --popover-foreground: 0 0% 93%;
+    --card: 218 32% 10.5%;
+    --card-foreground: 214 40% 94%;
+    --popover: 218 32% 11.5%;
+    --popover-foreground: 214 40% 94%;
 
-    --primary: 0 0% 93%;
-    --primary-foreground: 0 0% 9%;
+    --primary: 214 92% 58%;
+    --primary-foreground: 218 60% 8%;
 
-    --secondary: 0 0% 15%;
-    --secondary-foreground: 0 0% 93%;
-    --muted: 0 0% 15%;
-    --muted-foreground: 0 0% 62%;
-    --accent: 0 0% 16%;
-    --accent-foreground: 0 0% 93%;
+    --secondary: 218 26% 15.5%;
+    --secondary-foreground: 214 35% 92%;
+    --muted: 218 26% 15.5%;
+    --muted-foreground: 214 16% 62%;
+    --accent: 217 32% 17.5%;
+    --accent-foreground: 214 45% 92%;
 
     --destructive: 0 62% 58%;
     --destructive-foreground: 0 0% 9%;
 
-    --border: 0 0% 18%;
-    --input: 0 0% 24%;
-    --ring: 0 0% 83%;
+    --border: 218 24% 18%;
+    --input: 218 22% 24%;
+    --ring: 214 85% 60%;
 
     --medal-gold: 43 80% 50%;
     --medal-gold-foreground: 28 70% 10%;
@@ -103,7 +104,7 @@
   }
 
   ::selection {
-    @apply bg-foreground text-background;
+    @apply bg-primary text-primary-foreground;
   }
 
   :focus-visible {
