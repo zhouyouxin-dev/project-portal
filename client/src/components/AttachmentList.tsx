@@ -70,7 +70,7 @@ export function AttachmentList({ attachments, poster }: AttachmentListProps) {
             return (
               <li
                 key={file.id}
-                className="flex items-center gap-3 rounded-xl border border-border bg-card p-3.5 transition-colors duration-150 hover:border-foreground/30"
+                className="flex items-center gap-3 rounded-xl border border-border bg-card p-3.5 transition-colors duration-150 hover:border-primary/30"
               >
                 <span className="flex size-10 shrink-0 items-center justify-center rounded-lg bg-muted text-foreground">
                   <Icon aria-hidden className="size-5" strokeWidth={1.75} />

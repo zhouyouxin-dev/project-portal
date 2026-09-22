@@ -324,8 +324,8 @@ export default function ProjectForm() {
                 className={cn(
                   "flex cursor-pointer flex-col items-center justify-center gap-2 rounded-xl border-2 border-dashed px-4 py-6 text-center text-sm transition-colors duration-150",
                   dragging
-                    ? "border-foreground bg-accent"
-                    : "border-border text-muted-foreground hover:border-foreground/40 hover:text-foreground",
+                    ? "border-primary bg-accent"
+                    : "border-border text-muted-foreground hover:border-primary/40 hover:text-foreground",
                   uploading && "pointer-events-none opacity-60",
                 )}
               >
@@ -429,8 +429,8 @@ export default function ProjectForm() {
                     className={cn(
                       "cursor-pointer rounded-full border px-3 py-1 text-sm transition-colors duration-150",
                       active
-                        ? "border-foreground bg-foreground text-background"
-                        : "border-border bg-card text-muted-foreground hover:border-foreground/40 hover:text-foreground",
+                        ? "border-primary bg-primary text-primary-foreground"
+                        : "border-border bg-card text-muted-foreground hover:border-primary/40 hover:text-primary",
                     )}
                   >
                     {tag.name}

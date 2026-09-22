@@ -20,7 +20,7 @@ export default function App() {
       attribute="class"
       defaultTheme="light"
       enableSystem={false}
-      storageKey="portal-theme-v3"
+      storageKey="portal-theme"
       disableTransitionOnChange
     >
       <BrowserRouter>

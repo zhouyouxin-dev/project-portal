@@ -47,7 +47,7 @@ export function Toc({ headings }: { headings: Heading[] }) {
                 className={cn(
                   "-ml-px block border-l-2 py-1.5 pl-4 text-sm leading-snug transition-colors duration-150",
                   active
-                    ? "border-foreground font-medium text-foreground"
+                    ? "border-primary font-medium text-primary"
                     : "border-transparent text-muted-foreground hover:text-foreground",
                 )}
               >

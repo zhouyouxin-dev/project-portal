@@ -213,7 +213,7 @@ function StatusPill({ draft }: { draft: boolean }) {
           : "inline-flex items-center gap-1.5 whitespace-nowrap rounded-full bg-muted px-2 py-0.5 text-xs font-medium"
       }
     >
-      <span className={`size-1.5 rounded-full ${draft ? "bg-muted-foreground/50" : "bg-foreground"}`} />
+      <span className={`size-1.5 rounded-full ${draft ? "bg-muted-foreground/50" : "bg-primary"}`} />
       {draft ? "草稿" : "已发布"}
     </span>
   )

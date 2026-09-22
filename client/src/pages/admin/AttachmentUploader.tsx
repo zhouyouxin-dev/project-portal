@@ -99,7 +99,7 @@ export function AttachmentUploader({
                 "flex items-center gap-3 rounded-xl border-2 border-dashed border-border p-4 transition-colors duration-150",
                 uploading
                   ? "cursor-not-allowed opacity-50"
-                  : "cursor-pointer hover:border-foreground/40 hover:bg-accent/40",
+                  : "cursor-pointer hover:border-primary/40 hover:bg-accent/40",
               )}
             >
               <span className="flex size-10 shrink-0 items-center justify-center rounded-lg bg-muted">
@@ -144,7 +144,7 @@ export function AttachmentUploader({
           </div>
           <div className="mt-3 h-1.5 w-full overflow-hidden rounded-full bg-muted">
             <div
-              className="h-full rounded-full bg-foreground transition-[width] duration-150"
+              className="h-full rounded-full bg-primary transition-[width] duration-150"
               style={{ width: `${uploading.percent}%` }}
             />
           </div>

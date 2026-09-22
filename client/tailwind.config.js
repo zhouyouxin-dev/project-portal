@@ -87,10 +87,9 @@ module.exports = {
         sm: "calc(var(--radius) - 4px)",
       },
       boxShadow: {
-        card: "0 1px 2px rgb(8 40 90 / 0.10), 0 2px 8px rgb(8 40 90 / 0.08)",
-        "card-hover":
-          "0 0 0 1px hsl(197 100% 50% / 0.35), 0 14px 34px -10px hsl(197 100% 50% / 0.38), 0 4px 12px rgb(8 40 90 / 0.18)",
-        glow: "0 0 24px hsl(197 100% 50% / 0.35), 0 4px 16px -6px hsl(197 100% 50% / 0.30)",
+        card: "0 1px 2px rgb(0 0 0 / 0.04), 0 1px 3px rgb(0 0 0 / 0.06)",
+        "card-hover": "0 12px 24px -8px rgb(37 99 235 / 0.25), 0 2px 6px rgb(0 0 0 / 0.05)",
+        "blue-soft": "0 8px 20px -6px rgb(59 130 246 / 0.35), 0 2px 6px -2px rgb(59 130 246 / 0.15)",
       },
       maxWidth: {
         grid: "1200px",

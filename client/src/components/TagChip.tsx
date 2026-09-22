@@ -18,8 +18,8 @@ export function TagChip({ name, active = false, className }: TagChipProps) {
       className={cn(
         "inline-flex h-6 max-w-full cursor-pointer items-center rounded-full border px-2.5 text-xs font-medium transition-colors duration-150",
         active
-          ? "border-foreground bg-foreground text-background"
-          : "border-border bg-muted/60 text-muted-foreground hover:border-foreground/40 hover:bg-accent hover:text-foreground",
+          ? "border-primary bg-primary text-primary-foreground"
+          : "border-primary/15 bg-primary/10 text-primary/80 hover:border-primary/30 hover:bg-primary/15 hover:text-primary",
         className,
       )}
     >

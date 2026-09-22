@@ -3,40 +3,39 @@
 @tailwind utilities;
 
 /*
-  设计基调：科技蓝·深海数据大屏（Tech Blue / Navy Glow）
-  ── 全站以海军蓝为底（HSL 216 45% 11%），电光蓝（HSL 197 100% 50%）为唯一强调色
-  ── 背景带径向蓝色光晕 + 细网格线，营造科技感；卡片半透明 + 蓝色辉光阴影
-  ── 浅色模式为同一套蓝色体系的「冰蓝」变体，明暗切换不改变风格基因
-  ── 奖项徽章保留奖牌色：特等/一等=金、二等=银、三等=铜、优秀=灰
-  ── 赛道各有一个柔和色相，只用于「无封面」时的占位渐变
+  设计基调：清爽学院蓝
+  ── 主色为蓝色：按钮、筛选胶囊、链接、强调文字统一用蓝
+  ── 背景与卡片带一点点冷色调，层级靠明度与阴影表达
+  ── 唯一的其他颜色留给奖项徽章：特等/一等=金、二等=银、三等=铜、优秀=灰
+  ── 圆角 + 柔和阴影 + 卡片；系统无衬线字体，不加载外部字体
 */
 
 @layer base {
   :root {
-    --background: 210 48% 93.5%;
-    --foreground: 215 60% 12%;
+    --background: 208 60% 95%;
+    --foreground: 222 47% 11%;
 
     --card: 0 0% 100%;
-    --card-foreground: 215 60% 12%;
+    --card-foreground: 222 47% 11%;
     --popover: 0 0% 100%;
-    --popover-foreground: 215 60% 12%;
+    --popover-foreground: 222 47% 11%;
 
-    --primary: 199 95% 45%;
+    --primary: 217 91% 55%;
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 208 45% 89%;
-    --secondary-foreground: 210 60% 22%;
-    --muted: 208 42% 90%;
-    --muted-foreground: 210 20% 40%;
-    --accent: 197 70% 88%;
-    --accent-foreground: 200 70% 26%;
+    --secondary: 210 40% 94%;
+    --secondary-foreground: 222 47% 11%;
+    --muted: 210 40% 94%;
+    --muted-foreground: 215 20% 42%;
+    --accent: 214 65% 93%;
+    --accent-foreground: 222 47% 18%;
 
     --destructive: 0 72% 46%;
     --destructive-foreground: 0 0% 98%;
 
-    --border: 208 32% 81%;
-    --input: 205 30% 76%;
-    --ring: 199 95% 45%;
+    --border: 214 32% 88%;
+    --input: 214 28% 80%;
+    --ring: 217 91% 55%;
 
     --radius: 0.75rem;
 
@@ -52,30 +51,30 @@
   }
 
   .dark {
-    --background: 216 45% 11%;
-    --foreground: 202 60% 93%;
+    --background: 222 47% 7%;
+    --foreground: 210 40% 96%;
 
-    --card: 216 40% 15.5%;
-    --card-foreground: 202 60% 93%;
-    --popover: 216 40% 16.5%;
-    --popover-foreground: 202 60% 93%;
+    --card: 222 45% 11%;
+    --card-foreground: 210 40% 96%;
+    --popover: 222 45% 11%;
+    --popover-foreground: 210 40% 96%;
 
-    --primary: 197 100% 50%;
-    --primary-foreground: 217 80% 6%;
+    --primary: 217 91% 60%;
+    --primary-foreground: 0 0% 100%;
 
-    --secondary: 216 35% 21%;
-    --secondary-foreground: 202 45% 90%;
-    --muted: 216 35% 21%;
-    --muted-foreground: 205 25% 68%;
-    --accent: 205 55% 24%;
-    --accent-foreground: 199 80% 90%;
+    --secondary: 217 30% 16%;
+    --secondary-foreground: 210 40% 96%;
+    --muted: 217 30% 16%;
+    --muted-foreground: 215 20% 65%;
+    --accent: 217 30% 18%;
+    --accent-foreground: 210 40% 96%;
 
     --destructive: 0 62% 58%;
     --destructive-foreground: 0 0% 9%;
 
-    --border: 210 40% 27%;
-    --input: 210 38% 33%;
-    --ring: 197 100% 50%;
+    --border: 217 30% 20%;
+    --input: 217 28% 26%;
+    --ring: 217 91% 60%;
 
     --medal-gold: 43 80% 50%;
     --medal-gold-foreground: 28 70% 10%;
@@ -101,31 +100,6 @@
     @apply bg-background text-foreground font-sans antialiased;
     font-feature-settings: "kern" 1, "liga" 1, "tnum" 0;
     text-rendering: optimizeLegibility;
-  }
-
-  /*
-    科技蓝背景系统：深色模式下 = 深海军蓝底 + 两团电光蓝光晕 + 细网格线。
-    网格用 1px 线性渐变平铺，不加载任何图片资源；光晕用大半径径向渐变。
-  */
-  .dark body {
-    background-image:
-      radial-gradient(55rem 38rem at 82% -12%, hsl(197 100% 45% / 0.13), transparent 62%),
-      radial-gradient(48rem 34rem at -12% 30%, hsl(217 95% 55% / 0.10), transparent 60%),
-      radial-gradient(70rem 40rem at 50% 118%, hsl(199 90% 50% / 0.08), transparent 65%),
-      linear-gradient(hsl(199 80% 60% / 0.035) 1px, transparent 1px),
-      linear-gradient(90deg, hsl(199 80% 60% / 0.035) 1px, transparent 1px);
-    background-size: auto, auto, auto, 42px 42px, 42px 42px;
-    background-attachment: fixed;
-  }
-
-  /* 浅色（冰蓝）模式：同样有网格基因，但明度反过来 */
-  body {
-    background-image:
-      radial-gradient(55rem 38rem at 82% -12%, hsl(199 95% 50% / 0.10), transparent 62%),
-      linear-gradient(hsl(205 60% 45% / 0.055) 1px, transparent 1px),
-      linear-gradient(90deg, hsl(205 60% 45% / 0.055) 1px, transparent 1px);
-    background-size: auto, 42px 42px, 42px 42px;
-    background-attachment: fixed;
   }
 
   ::selection {
@@ -160,130 +134,6 @@
     @apply text-xs font-medium uppercase tracking-wider text-muted-foreground;
   }
 
-  /* 科技蓝辉光：主按钮 / Logo / 选中徽标的呼吸光 */
-  .glow-primary {
-    box-shadow:
-      0 0 0 1px hsl(var(--primary) / 0.35),
-      0 0 20px hsl(var(--primary) / 0.40),
-      0 4px 14px -4px hsl(var(--primary) / 0.45);
-  }
-
-  /* 电光蓝渐变主按钮 */
-  .btn-tech {
-    background-image: linear-gradient(
-      135deg,
-      hsl(199 100% 55%) 0%,
-      hsl(217 95% 58%) 100%
-    );
-  }
-
-  /* 标题渐变字：白 → 电光蓝 */
-  .text-tech-gradient {
-    background-image: linear-gradient(
-      92deg,
-      hsl(var(--foreground)) 15%,
-      hsl(var(--primary)) 85%
-    );
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
-  }
-
-  /* 主色文字辉光（统计数字） */
-  .text-glow-primary {
-    text-shadow: 0 0 18px hsl(var(--primary) / 0.55);
-  }
-
-  /*
-    科技卡片：顶部一条电光蓝「能量线」，平时半亮、悬浮时全亮。
-    用于统计卡 / 检索面板 / 项目卡，给方框统一的科技身份。
-  */
-  .tech-card {
-    position: relative;
-  }
-  .tech-card::before {
-    content: "";
-    position: absolute;
-    inset: 0 0 auto 0;
-    height: 2px;
-    z-index: 1;
-    pointer-events: none;
-    background: linear-gradient(
-      90deg,
-      transparent 0%,
-      hsl(var(--primary) / 0.85) 18%,
-      hsl(217 95% 62% / 0.9) 50%,
-      hsl(var(--primary) / 0.85) 82%,
-      transparent 100%
-    );
-    opacity: 0.45;
-    transition: opacity 0.25s ease;
-  }
-  .tech-card:hover::before {
-    opacity: 1;
-  }
-
-  /*
-    HUD 瞄准角：悬浮时右下角浮现电光蓝直角标，像取景框。
-    只占一个角，克制不抢内容。
-  */
-  .tech-corner::after {
-    content: "";
-    position: absolute;
-    right: 10px;
-    bottom: 10px;
-    width: 16px;
-    height: 16px;
-    z-index: 1;
-    pointer-events: none;
-    border-right: 2px solid hsl(var(--primary) / 0.75);
-    border-bottom: 2px solid hsl(var(--primary) / 0.75);
-    border-radius: 0 0 3px 0;
-    opacity: 0;
-    transform: translate(3px, 3px);
-    transition: opacity 0.25s ease, transform 0.25s ease;
-  }
-  .tech-corner:hover::after {
-    opacity: 1;
-    transform: translate(0, 0);
-  }
-
-  /*
-    赛道板块头部：色相由组件注入 --track-hue（与封面占色同一套映射）。
-    渐变芯片 + 同色计数胶囊 + 向右淡出的能量线，一个赛道一种颜色身份。
-  */
-  .track-chip {
-    background-image: linear-gradient(
-      135deg,
-      hsl(var(--track-hue) 88% 58%) 0%,
-      hsl(calc(var(--track-hue) + 28) 82% 50%) 100%
-    );
-    box-shadow:
-      0 0 16px hsl(var(--track-hue) 90% 55% / 0.40),
-      0 2px 8px rgb(8 40 90 / 0.18);
-  }
-
-  .track-line {
-    height: 2px;
-    border-radius: 1px;
-    background: linear-gradient(
-      90deg,
-      hsl(var(--track-hue) 85% 55% / 0.55) 0%,
-      hsl(var(--track-hue) 85% 60% / 0.18) 55%,
-      transparent 100%
-    );
-  }
-
-  .track-count {
-    border-color: hsl(var(--track-hue) 80% 55% / 0.40);
-    background-color: hsl(var(--track-hue) 85% 55% / 0.09);
-    color: hsl(var(--track-hue) 70% 38%);
-  }
-
-  .dark .track-count {
-    color: hsl(var(--track-hue) 80% 74%);
-  }
-
   /*
     无封面占位：按赛道色相生成柔和渐变。
     色相由组件通过 style={{ "--cover-hue": n }} 注入，这里只负责明度与饱和度。
@@ -314,6 +164,20 @@
 
   .no-scrollbar::-webkit-scrollbar {
     display: none;
+  }
+
+  /* 科技感网格纹理：叠在卡片角落，配合 mask 渐隐 */
+  .tech-grid {
+    background-image:
+      linear-gradient(rgb(59 130 246 / 0.12) 1px, transparent 1px),
+      linear-gradient(90deg, rgb(59 130 246 / 0.12) 1px, transparent 1px);
+    background-size: 16px 16px;
+  }
+
+  .dark .tech-grid {
+    background-image:
+      linear-gradient(rgb(96 165 250 / 0.1) 1px, transparent 1px),
+      linear-gradient(90deg, rgb(96 165 250 / 0.1) 1px, transparent 1px);
   }
 }
 

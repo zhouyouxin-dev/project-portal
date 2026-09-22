@@ -121,12 +121,12 @@ export default function Home() {
       <main className="mx-auto w-full max-w-grid flex-1 px-5 sm:px-8">
         {/* ── Hero：标题 + 说明 + 总览统计 ── */}
         <section className="animate-rise py-14 sm:py-20">
-          <span className="glow-primary inline-flex items-center gap-1.5 rounded-full border border-primary/40 bg-primary/10 px-3 py-1 text-xs font-medium text-primary">
+          <span className="inline-flex items-center gap-1.5 rounded-full border border-primary/30 bg-primary/10 px-3 py-1 text-xs font-medium text-primary">
             <Trophy className="size-3.5" aria-hidden />
             竞赛获奖项目汇编
           </span>
-          <h1 className="text-tech-gradient mt-5 max-w-3xl text-display font-bold tracking-tight">
-            记录每一个走上领奖台的项目
+          <h1 className="mt-5 max-w-3xl text-display font-bold tracking-tight">
+            记录每一个<span className="text-primary">走上领奖台的项目</span>
           </h1>
           <p className="mt-5 max-w-2xl text-base text-muted-foreground sm:text-lg">
             收录历年各级各类学科竞赛的获奖项目，逐项保留立项背景、技术方案、
@@ -134,15 +134,38 @@ export default function Home() {
           </p>
 
           <dl className="mt-10 grid grid-cols-2 gap-4 lg:grid-cols-4">
-            <StatCard icon={<LayoutGrid />} label="收录项目" value={facets?.total} unit="项" />
-            <StatCard icon={<Trophy />} label="国家级获奖" value={facets?.national} unit="项" />
-            <StatCard icon={<Medal />} label="省级获奖" value={facets?.provincial} unit="项" />
-            <StatCard icon={<ChartColumn />} label="年份跨度" value={span} />
+            <StatCard
+              icon={<LayoutGrid />}
+              label="收录项目"
+              value={facets?.total}
+              unit="项"
+              accent="from-blue-500 to-cyan-400"
+            />
+            <StatCard
+              icon={<Trophy />}
+              label="国家级获奖"
+              value={facets?.national}
+              unit="项"
+              accent="from-amber-400 to-orange-500"
+            />
+            <StatCard
+              icon={<Medal />}
+              label="省级获奖"
+              value={facets?.provincial}
+              unit="项"
+              accent="from-violet-500 to-purple-500"
+            />
+            <StatCard
+              icon={<ChartColumn />}
+              label="年份跨度"
+              value={span}
+              accent="from-teal-400 to-emerald-500"
+            />
           </dl>
         </section>
 
         {/* ── 检索 ── */}
-        <section className="tech-card rounded-2xl border border-primary/25 bg-card/80 p-5 shadow-card backdrop-blur-md sm:p-6">
+        <section className="rounded-2xl border border-border bg-card p-5 shadow-card sm:p-6">
           <FilterBar
             filters={filters}
             onChange={setFilters}
@@ -197,10 +220,10 @@ export default function Home() {
             {RELATED_SYSTEMS.map((sys) => (
               <article
                 key={sys.url}
-                className="tech-card tech-corner group relative flex flex-col gap-3 overflow-hidden rounded-xl border border-border bg-card/85 p-5 shadow-card backdrop-blur-md transition-[transform,box-shadow,border-color] duration-200 hover:-translate-y-0.5 hover:border-primary/40 hover:shadow-card-hover focus-within:ring-2 focus-within:ring-ring/30"
+                className="group relative flex flex-col gap-3 overflow-hidden rounded-xl border border-primary/15 bg-card p-5 shadow-card transition-[transform,box-shadow,border-color] duration-200 hover:-translate-y-0.5 hover:border-primary/30 hover:shadow-blue-soft focus-within:ring-2 focus-within:ring-ring/30"
               >
                 <div className="flex items-center gap-3">
-                  <span className="flex size-10 shrink-0 items-center justify-center rounded-lg bg-primary/15 text-primary ring-1 ring-primary/30 [&_svg]:size-5">
+                  <span className="flex size-10 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary [&_svg]:size-5">
                     {sys.icon}
                   </span>
                   <h3 className="line-clamp-2 text-base font-semibold leading-snug">
@@ -228,14 +251,14 @@ export default function Home() {
                       href={sys.video}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex shrink-0 items-center gap-1 rounded-full border border-primary/30 bg-primary/10 px-2.5 py-1 text-xs font-medium text-primary transition-colors hover:border-primary/60 hover:bg-primary/15"
+                      className="inline-flex shrink-0 items-center gap-1 rounded-full border border-primary/25 bg-primary/10 px-2.5 py-1 text-xs font-medium text-primary transition-colors hover:border-primary/50 hover:bg-primary/15"
                     >
                       <Play aria-hidden className="size-3" />
                       参赛视频
                     </a>
                   )}
                   {sys.download && (
-                    <span className="inline-flex shrink-0 items-center gap-1 rounded-full border border-primary/30 bg-primary/10 px-2.5 py-1 text-xs font-medium text-primary">
+                    <span className="inline-flex shrink-0 items-center gap-1 rounded-full border border-primary/25 bg-primary/10 px-2.5 py-1 text-xs font-medium text-primary">
                       <Download aria-hidden className="size-3" />
                       下载 PPT
                     </span>
@@ -303,23 +326,38 @@ function StatCard({
   label,
   value,
   unit,
+  accent = "from-blue-500 to-cyan-400",
 }: {
   icon: React.ReactNode
   label: string
   value?: number | string | null
   unit?: string
+  /** 图标块的渐变方向类，各卡片用不同色相区分 */
+  accent?: string
 }) {
   return (
-    <div className="tech-card flex items-center gap-4 overflow-hidden rounded-xl border border-border bg-card/80 p-4 shadow-card backdrop-blur-md sm:p-5">
-      <span className="flex size-10 shrink-0 items-center justify-center rounded-lg bg-primary/15 text-primary ring-1 ring-primary/30 [&_svg]:size-5">
+    <div className="group relative flex items-center gap-4 overflow-hidden rounded-xl border border-primary/15 bg-card p-4 shadow-blue-soft transition-[transform,box-shadow] duration-200 hover:-translate-y-0.5 hover:shadow-card-hover sm:p-5">
+      {/* 顶部渐变光条 */}
+      <span
+        aria-hidden
+        className={`absolute inset-x-0 top-0 h-[3px] bg-gradient-to-r ${accent}`}
+      />
+      {/* 角落科技网格纹理 */}
+      <span
+        aria-hidden
+        className="tech-grid pointer-events-none absolute -right-3 -top-3 size-24 opacity-80 [mask-image:radial-gradient(closest-side,black,transparent)]"
+      />
+      <span
+        className={`relative flex size-10 shrink-0 items-center justify-center rounded-lg bg-gradient-to-br text-white shadow-[0_4px_14px_-2px_rgb(59_130_246_/_0.45)] [&_svg]:size-5 ${accent}`}
+      >
         {icon}
       </span>
-      <div className="min-w-0">
+      <div className="relative min-w-0">
         <dt className="text-xs text-muted-foreground">{label}</dt>
-        <dd className="text-glow-primary mt-0.5 text-2xl font-semibold tabular-nums tracking-tight text-primary">
+        <dd className="mt-0.5 text-2xl font-semibold tabular-nums tracking-tight text-primary">
           {value ?? "—"}
           {unit && value != null && (
-            <span className="ml-1 text-sm font-normal text-muted-foreground">{unit}</span>
+            <span className="ml-1 text-sm font-normal text-primary/70">{unit}</span>
           )}
         </dd>
       </div>

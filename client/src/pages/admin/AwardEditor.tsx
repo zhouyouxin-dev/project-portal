@@ -48,7 +48,7 @@ export function AwardEditor({ awards, onChange }: AwardEditorProps) {
       {awards.map((award, i) => (
         <fieldset key={i} className="rounded-xl border border-border bg-muted/30 p-4 sm:p-5">
           <div className="mb-4 flex items-center justify-between gap-3">
-            <legend className="rounded-full bg-foreground px-2.5 py-0.5 text-xs font-medium text-background">
+            <legend className="rounded-full bg-primary px-2.5 py-0.5 text-xs font-medium text-primary-foreground">
               记录 {i + 1}
             </legend>
             <div className="flex items-center gap-0.5">
